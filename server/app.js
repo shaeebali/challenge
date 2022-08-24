@@ -29,6 +29,7 @@ app.get('/results', (req, res) => {
     res.json(results)
 })
 
+
 // route to retrieve results by their IDs and throw error if incorrect
 app.get('/results/:id', (req, res) => {
     try {
@@ -42,6 +43,14 @@ app.get('/results/:id', (req, res) => {
         res.status(404).send({message: err.message})
     }
 })
+
+const getAllResults = arr => {
+    if (Array.isArray(arr)) {
+        return arr[Math.floor(Math.random() * arr.length)]
+    }
+    throw new Error('Expected an array');
+}
+module.exports = { getAllResults };
 
 
 // export modules:
